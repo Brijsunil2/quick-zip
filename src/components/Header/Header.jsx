@@ -1,8 +1,13 @@
-import { title } from "../../assets/images/quick_zip_title.png";
+import "./Header.scss";
+import title from "../../assets/images/quick_zip_title.png";
+
 const Header = () => {
   return (
-    <header>Header</header>
-  )
-}
+    <header>
+      {" "}
+      <img src={title} alt="QuickZip logo" />
+    </header>
+  );
+};
 
-export default Header
+export default Header;
