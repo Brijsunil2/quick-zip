@@ -1,10 +1,13 @@
-import Header from "./components/Header/Header"
+import Header from "./components/Header/Header";
+import Homepage from "./pages/HomePage/Homepage";
+
 function App() {
   return (
     <>
-     <Header />
+      <Header />
+      <Homepage />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,9 +1,12 @@
 import "./Homepage.scss";
+import FileUploader from "../../components/FileUploader/FileUploader";
 
 const Homepage = () => {
   return (
-    <div>Homepage</div>
-  )
-}
+    <section>
+      <FileUploader />
+    </section>
+  );
+};
 
-export default Homepage
+export default Homepage;
