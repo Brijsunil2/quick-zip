@@ -1,0 +1,89 @@
+@use "../../styles/colors.scss" as *;
+@use "../../styles/variables.scss" as *;
+@use "sass:map";
+
+.file-uploader {
+  margin: 1rem auto;
+  max-width: map.get($breakpoints, "sm");
+  padding: 20px;
+  text-align: center;
+
+  .function-btns {
+    border: 2px solid map.get($colors, "border");
+    background-color: map.get($colors, "dropzone-bg");
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin: 1rem 0;
+
+    button {
+      background-color: map.get($colors, "primary");
+      color: #fff;
+      padding: 8px 14px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: map.get($colors, "primary-dark");
+      }
+
+      &:disabled {
+        background-color: map.get($colors, "primary-light");
+        color: map.get($colors, "text-muted");
+        border: map.get($colors, "primary-dark") 1px solid;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .drop-zone {
+    border: 2px dashed map.get($colors, "border");
+    border-radius: 10px;
+    padding: 2rem;
+    transition: background-color 0.2s;
+    background-color: map.get($colors, "dropzone-bg");
+
+    &> p {
+      color: map.get($colors, "text-muted");
+    }
+
+    &.active {
+      background-color: map.get($colors, "dropzone-active");
+      border-color: #007bff;
+      box-shadow: 0 0 10px map.get($colors, "shadow");
+    }
+  }
+
+  .file-input {
+    display: none;
+  }
+
+  .custom-file-input-btn {
+    display: inline-block;
+    background-color: map.get($colors, "primary");
+    color: white;
+    margin-top: 1rem;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+
+  .custom-file-input-btn:hover {
+    background-color: #173ec9;
+  }
+
+  .file-list {
+    margin-top: 20px;
+    text-align: left;
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li {
+      padding: 5px 0;
+    }
+  }
+}

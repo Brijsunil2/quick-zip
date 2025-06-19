@@ -7,7 +7,9 @@
   margin: 0;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -25,6 +27,7 @@ html {
 body {
   background-color: map.get($colors, "bg-color");
   font-family: "Inter", serif;
+  color: map.get($colors, "text-dark");
 }
 
 h1 {
@@ -56,9 +59,10 @@ h6 {
 }
 
 p,
-li {
+li,
+label {
   font-size: 1rem;
-  font-weight: 200;
+  font-weight: 400;
 }
 
 a {

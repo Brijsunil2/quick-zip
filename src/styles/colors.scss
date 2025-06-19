@@ -1,10 +1,20 @@
 $colors: (
-  bg-color:       #FFFFFF,   
-  text-dark:      #1A1A1A,   
-  accent-green:   #00FF88,   
-  accent-blue:    #5BC0EB,   
-  dark-green:     #007F5F,   
-  light-green:    #B8F2E6,   
-  border-gray:    #D3D3D3,   
-  box-shadow:     rgba(0, 0, 0, 0.1), 
+  primary:         #1c4eff,           // Brand blue from logo
+  primary-dark:    #173ec9,           // Darker blue (hover)
+  primary-light:   #e5edff,           // Light blue background
+
+  accent-yellow:   #f4b400,           // Subtle logo accent
+  accent-green:    #00c853,           // Optional success color
+  error:           #ff5252,           // Error red
+
+  bg-color:        #f5f7fa,           // App background
+  dropzone-bg:     #f0f4ff,           // Drop zone default
+  dropzone-active: #dbe7ff,           // Drop zone on hover
+
+  text-dark:       #212529,           // Main text
+  text-muted:      #6c757d,           // Muted text
+  text-light:      #adb5bd,           // Light gray text
+
+  border:          #dee2e6,           // Borders
+  shadow:          rgba(28, 78, 255, 0.1), // Soft blue shadow
 );
