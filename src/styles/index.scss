@@ -59,9 +59,15 @@ h6 {
 }
 
 p,
-li,
-label {
+li {
   font-size: 1rem;
+  font-weight: 400;
+}
+
+button,
+input,
+label {
+  font-size: 0.8rem;
   font-weight: 400;
 }
 

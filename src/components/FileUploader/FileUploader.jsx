@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { FaUpload } from "react-icons/fa";
+import { MdOutlineFolderZip } from "react-icons/md";
 import "./FileUploader.scss";
 
 const FileUploader = () => {
@@ -46,7 +48,7 @@ const FileUploader = () => {
       </p>
       <div className="function-btns">
         <button onClick={handleCompress} disabled={files.length <= 0}>
-          Compress
+          <MdOutlineFolderZip /> Compress
         </button>
       </div>
       <div
@@ -56,10 +58,11 @@ const FileUploader = () => {
         onDrop={handleDrop}
       >
         <p>Drag & Drop files here or click to browse</p>
-        <label for="file-upload" class="custom-file-input-btn">
-          📁 Upload Files
+        <label htmlFor="file-upload" className="custom-file-input-btn">
+          <FaUpload /> Upload Files
         </label>
         <input
+          id="file-upload"
           className="file-input"
           type="file"
           multiple
