@@ -12,6 +12,10 @@ const FileUploader = () => {
     setFiles((prev) => [...prev, ...Array.from(selectedFiles)]);
   };
 
+  const handleRemoveFile = (fileToRemove) => {
+    setFiles((prev) => prev.filter((file) => file !== fileToRemove));
+  };
+
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -70,8 +74,8 @@ const FileUploader = () => {
           onChange={handleFileChange}
         />
       </div>
-      
-      <FilesList files={files} />
+
+      <FilesList files={files} handleRemoveFile={handleRemoveFile} />
     </div>
   );
 };

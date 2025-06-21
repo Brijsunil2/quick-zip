@@ -1,6 +1,6 @@
 import { FaSquareXmark } from "react-icons/fa6";
 
-const FilesList = ({ files }) => {
+const FilesList = ({ files, handleRemoveFile }) => {
   return (
     <div className="files-list-container">
       {files.length > 0 && (
@@ -19,7 +19,7 @@ const FilesList = ({ files }) => {
                       : `${(file.size / 1024).toFixed(2)} KB`}
                   </span>
                 </div>
-                <FaSquareXmark key={idx} className="remove-btn" />
+                <FaSquareXmark key={idx} className="remove-btn" onClick={() => handleRemoveFile(file)}/>
               </li>
             ))}
           </ul>
