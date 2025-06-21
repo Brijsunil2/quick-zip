@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaUpload } from "react-icons/fa";
 import { MdOutlineFolderZip } from "react-icons/md";
+import FilesList from "./FilesList";
 import "./FileUploader.scss";
 
 const FileUploader = () => {
@@ -48,7 +49,7 @@ const FileUploader = () => {
       </p>
       <div className="function-btns">
         <button onClick={handleCompress} disabled={files.length <= 0}>
-          <MdOutlineFolderZip /> Compress
+          <MdOutlineFolderZip /> Compress .zip
         </button>
       </div>
       <div
@@ -69,16 +70,8 @@ const FileUploader = () => {
           onChange={handleFileChange}
         />
       </div>
-
-      {files.length > 0 && (
-        <div className="file-list">
-          <ul>
-            {files.map((file, idx) => (
-              <li key={idx}>{file.name}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+      
+      <FilesList files={files} />
     </div>
   );
 };

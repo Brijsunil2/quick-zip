@@ -5,10 +5,11 @@ $colors: (
 
   accent-yellow:   #f4b400,           // Subtle logo accent
   accent-green:    #00c853,           // Optional success color
+  accent-red:      #ff1744,           // Optional error color
   error:           #ff5252,           // Error red
 
   bg-color:        #f5f7fa,           // App background
-  dropzone-bg:     #f0f4ff,           // Drop zone default
+  secondary-bg:    #f0f4ff,           // Secondary background for components
   dropzone-active: #dbe7ff,           // Drop zone on hover
 
   text-dark:       #212529,           // Main text

@@ -1,18 +1,22 @@
 @use "../../styles/colors.scss" as *;
 @use "../../styles/variables.scss" as *;
 @use "sass:map";
+@use "sass:color";
 
 .file-uploader {
   margin: 1rem auto;
   max-width: map.get($breakpoints, "sm");
   padding: 20px;
-  text-align: center;
+
+  .intro {
+    text-align: center;
+  }
 
   .function-btns {
     display: flex;
     justify-content: center;
     border: 2px solid map.get($colors, "border");
-    background-color: map.get($colors, "dropzone-bg");
+    background-color: map.get($colors, "secondary-bg");
     border-radius: 10px;
     padding: 0.5rem;
     margin: 1rem 0;
@@ -42,13 +46,14 @@
   }
 
   .drop-zone {
+    text-align: center;
     border: 2px dashed map.get($colors, "border");
     border-radius: 10px;
     padding: 2rem;
     transition: background-color 0.2s;
-    background-color: map.get($colors, "dropzone-bg");
+    background-color: map.get($colors, "secondary-bg");
 
-    &> p {
+    & > p {
       color: map.get($colors, "text-muted");
     }
 
@@ -81,15 +86,57 @@
 
   .file-list {
     margin-top: 20px;
-    text-align: left;
 
-    ul {
+    .file-list-items {
+      display: flex;
+      gap: 0.5rem;
+      flex-direction: column;
       list-style: none;
-      padding: 0;
-    }
 
-    li {
-      padding: 5px 0;
+      .file-list-item {
+        display: flex;
+        align-items: center;
+        max-width: 100%;
+        padding: 0.5rem 1rem;
+        background-color: map.get($colors, "secondary-bg");
+        border: none;
+        border-radius: 10px;
+
+        .file-info {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          min-width: 0;
+        }
+
+        .file-name {
+          font-weight: 500;
+          color: map.get($colors, "text-primary");
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .file-size {
+          font-size: 0.8rem;
+          color: map.get($colors, "text-muted");
+        }
+
+        .remove-btn {
+          margin-left: 1rem;
+          scale: 1.2;
+          color: map.get($colors, "accent-red");
+          cursor: pointer;
+          transition: color 0.3s ease;
+
+          &:hover {
+            color: color.adjust(
+              map.get($colors, "accent-red"),
+              $lightness: -10%
+            );
+          }
+        }
+      }
     }
   }
 }
