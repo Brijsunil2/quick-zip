@@ -87,6 +87,28 @@
   .file-list {
     margin-top: 20px;
 
+    .files-list-header { 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.3rem;
+
+      .remove-all-btn {
+        font-size: 0.6rem;
+        background-color: map.get($colors, "accent-red");
+        color: white;
+        padding: 8px 14px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: color.adjust(map.get($colors, "accent-red"), $lightness: -10%);
+        }
+      }
+    }
+
     .file-list-items {
       display: flex;
       gap: 0.5rem;
@@ -98,8 +120,9 @@
         align-items: center;
         max-width: 100%;
         padding: 0.5rem 1rem;
-        background-color: map.get($colors, "secondary-bg");
+        background-color: white;
         border: none;
+        border: 2px solid map.get($colors, "border");
         border-radius: 10px;
 
         .file-info {

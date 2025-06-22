@@ -16,6 +16,10 @@ const FileUploader = () => {
     setFiles((prev) => prev.filter((file) => file !== fileToRemove));
   };
 
+  const handleRemoveAllFiles = () => {
+    setFiles([]);
+  };
+
   const handleDrop = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -75,7 +79,11 @@ const FileUploader = () => {
         />
       </div>
 
-      <FilesList files={files} handleRemoveFile={handleRemoveFile} />
+      <FilesList
+        files={files}
+        handleRemoveFile={handleRemoveFile}
+        handleRemoveAllFiles={handleRemoveAllFiles}
+      />
     </div>
   );
 };
