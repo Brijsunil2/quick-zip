@@ -57,7 +57,7 @@ const FileUploader = () => {
       </p>
       <div className="function-btns">
         <button onClick={handleCompress} disabled={files.length <= 0}>
-          <MdOutlineFolderZip /> Compress .zip
+          <MdOutlineFolderZip /> Compress (zip)
         </button>
       </div>
       <div
