@@ -3,6 +3,7 @@ import { FaUpload } from "react-icons/fa";
 import { MdOutlineFolderZip } from "react-icons/md";
 import FilesList from "./FilesList";
 import "./FileUploader.scss";
+import { zipFiles } from "../../util/zipfiles";
 
 const FileUploader = () => {
   const [files, setFiles] = useState([]);
