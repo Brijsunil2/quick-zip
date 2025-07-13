@@ -1,4 +1,5 @@
 import { FaSquareXmark } from "react-icons/fa6";
+import { useReadableFileSize } from "../util/useReadableFileSize";
 
 const FilesList = ({ files, handleRemoveFile, handleRemoveAllFiles }) => {
   return (
@@ -19,9 +20,7 @@ const FilesList = ({ files, handleRemoveFile, handleRemoveAllFiles }) => {
                 <div className="file-info">
                   <span className="file-name">{file.name}</span>
                   <span className="file-size">
-                    {file.size > 1024 * 1024
-                      ? `${(file.size / (1024 * 1024)).toFixed(2)} MB`
-                      : `${(file.size / 1024).toFixed(2)} KB`}
+                    {useReadableFileSize(parseInt(file.size))}
                   </span>
                 </div>
                 <FaSquareXmark
