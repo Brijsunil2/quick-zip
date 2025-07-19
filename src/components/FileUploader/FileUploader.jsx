@@ -3,10 +3,12 @@ import { FaUpload } from "react-icons/fa";
 import { MdOutlineFolderZip } from "react-icons/md";
 import FilesList from "./FilesList";
 import "./FileUploader.scss";
+import { useZipFiles } from "../util/useZipFiles";
 
 const FileUploader = () => {
   const [files, setFiles] = useState([]);
   const [dragActive, setDragActive] = useState(false);
+  const { zipFiles, progress, zippedFiles } = useZipFiles();
 
   const handleFiles = (selectedFiles) => {
     setFiles((prev) => [...prev, ...Array.from(selectedFiles)]);
@@ -46,7 +48,7 @@ const FileUploader = () => {
   };
 
   const handleCompress = () => {
-    console.log("Compressing files...");
+    zipFiles(files, `quickzip-${Date.now()}.zip`);
   };
 
   return (

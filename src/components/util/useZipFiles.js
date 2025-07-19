@@ -2,27 +2,31 @@ import { useState } from "react";
 import JSZip from "jszip";
 
 export const useZipFiles = () => {
-  const [isZipping, setIsZipping] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [zippedFiles, setZippedFiles] = useState(null);
 
   const zipFiles = async (files, outputName = "my-files.zip") => {
-    setIsZipping(true);
-    try {
-      const zip = new JSZip();
-      for (const file of files) {
-        const content = await file.arrayBuffer();
-        zip.file(file.name, content);
-      }
+    setProgress(0);
 
-      const blob = await zip.generateAsync({ type: "blob" });
+    const zip = new JSZip();
 
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = outputName;
-      link.click();
-    } finally {
-      setIsZipping(false);
+    for (const file of files) {
+      const content = await file.arrayBuffer();
+      zip.file(file.name, content);
     }
+
+    const blob = await zip.generateAsync(
+      { type: "blob" },
+      (metadata) => {
+        setProgress(Math.floor(metadata.percent));
+        console.log(`Zipping progress: ${metadata.percent}%`);
+      }
+    );
+
+    setZippedFiles(blob);
+    setProgress(100);
+
   };
 
-  return { zipFiles, isZipping };
+  return { zipFiles, progress, zippedFiles };
 };
