@@ -5,7 +5,7 @@ export const useZipFiles = () => {
   const [progress, setProgress] = useState(0);
   const [zippedFiles, setZippedFiles] = useState(null);
 
-  const zipFiles = async (files, outputName = "my-files.zip") => {
+  const zipFiles = async (files) => {
     setProgress(0);
 
     const zip = new JSZip();

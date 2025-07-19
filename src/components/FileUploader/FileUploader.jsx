@@ -48,7 +48,7 @@ const FileUploader = () => {
   };
 
   const handleCompress = () => {
-    zipFiles(files, `quickzip-${Date.now()}.zip`);
+    zipFiles(files);
   };
 
   return (
