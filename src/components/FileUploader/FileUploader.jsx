@@ -4,6 +4,7 @@ import { MdOutlineFolderZip } from "react-icons/md";
 import FilesList from "./FilesList";
 import "./FileUploader.scss";
 import { useZipFiles } from "../util/useZipFiles";
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 const FileUploader = () => {
   const [files, setFiles] = useState([]);
@@ -62,6 +63,9 @@ const FileUploader = () => {
           <MdOutlineFolderZip /> Compress (zip)
         </button>
       </div>
+      {
+        progress > 0 && <ProgressBar progress={progress} />
+      }
       <div
         className={`drop-zone ${dragActive ? "active" : ""}`}
         onDragOver={handleDragOver}

@@ -1,5 +1,6 @@
 @use "../../styles/colors.scss" as *;
 @use "sass:color";
+@use "sass:map";
 
 .progress-container {
   position: relative;
