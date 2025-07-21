@@ -3,13 +3,13 @@ import { FaUpload } from "react-icons/fa";
 import { MdOutlineFolderZip } from "react-icons/md";
 import FilesList from "./FilesList";
 import "./FileUploader.scss";
-import { useZipFiles } from "../util/useZipFiles";
 import ProgressBar from "../ProgressBar/ProgressBar";
+import { useZipWorker } from "../util/useZipWorker";
 
 const FileUploader = () => {
   const [files, setFiles] = useState([]);
   const [dragActive, setDragActive] = useState(false);
-  const { zipFiles, progress, zippedFiles } = useZipFiles();
+  const { progress, zippedBlob, zipFiles } = useZipWorker();
 
   const handleFiles = (selectedFiles) => {
     setFiles((prev) => [...prev, ...Array.from(selectedFiles)]);
@@ -44,12 +44,22 @@ const FileUploader = () => {
     setDragActive(false);
   };
 
-  const handleFileChange = (e) => {
+  const handleUpload = (e) => {
     handleFiles(e.target.files);
   };
 
-  const handleCompress = () => {
-    zipFiles(files);
+  const handleZip = () => {
+    if (files.length > 0) zipFiles(files);
+  };
+
+  const handleDownload = () => {
+    if (!zippedBlob) return;
+    const url = URL.createObjectURL(zippedBlob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "archive.zip";
+    a.click();
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -59,31 +69,33 @@ const FileUploader = () => {
         browser — no installation needed.
       </p>
       <div className="function-btns">
-        <button onClick={handleCompress} disabled={files.length <= 0}>
-          <MdOutlineFolderZip /> Compress (zip)
+        <button onClick={handleZip} disabled={files.length <= 0}>
+          <MdOutlineFolderZip /> Zip Files
         </button>
       </div>
-      {
-        progress > 0 && <ProgressBar progress={progress} />
-      }
-      <div
-        className={`drop-zone ${dragActive ? "active" : ""}`}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        <p>Drag & Drop files here or click to browse</p>
-        <label htmlFor="file-upload" className="custom-file-input-btn">
-          <FaUpload /> Upload Files
-        </label>
-        <input
-          id="file-upload"
-          className="file-input"
-          type="file"
-          multiple
-          onChange={handleFileChange}
-        />
-      </div>
+      {progress > 0 ? (
+        <ProgressBar progress={progress} />
+      ) : (
+        <div
+          className={`drop-zone ${dragActive ? "active" : ""}`}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          <p>Drag & Drop files here or click to browse</p>
+          <label htmlFor="file-upload" className="custom-file-input-btn">
+            <FaUpload /> Upload Files
+          </label>
+          <input
+            id="file-upload"
+            className="file-input"
+            type="file"
+            multiple
+            onChange={handleUpload}
+          />
+        </div>
+      )}
+      {zippedBlob && <button onClick={handleDownload}>Download ZIP</button>}
 
       <FilesList
         files={files}
