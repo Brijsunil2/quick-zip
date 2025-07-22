@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaUpload } from "react-icons/fa";
 import { MdOutlineFolderZip } from "react-icons/md";
+import { FaDownload } from "react-icons/fa6";
 import FilesList from "./FilesList";
 import "./FileUploader.scss";
 import ProgressBar from "../ProgressBar/ProgressBar";
@@ -95,7 +96,13 @@ const FileUploader = () => {
           />
         </div>
       )}
-      {zippedBlob && <button onClick={handleDownload}>Download ZIP</button>}
+      {zippedBlob && (
+        <div className="download-btns">
+          <button onClick={handleDownload}>
+            <FaDownload /> Zip Download
+          </button>
+        </div>
+      )}
 
       <FilesList
         files={files}
