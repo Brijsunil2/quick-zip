@@ -13,7 +13,7 @@ export const useZipWorker = () => {
     workerRef.current.onmessage = (e) => {
       const { type, percent, blob } = e.data;
       if (type === "progress") {
-        setProgress(Math.floor(percent));
+        setProgress(Math.ceil(percent));
       } else if (type === "done") {
         setZippedBlob(blob);
       }
@@ -25,7 +25,7 @@ export const useZipWorker = () => {
   }, []);
 
   const zipFiles = (files) => {
-    setProgress(0);
+    setProgress(1);
     setZippedBlob(null);
     workerRef.current.postMessage({ files });
   };

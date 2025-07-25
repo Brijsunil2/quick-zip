@@ -8,7 +8,7 @@
   max-width: map.get($breakpoints, "sm");
   padding: 20px;
 
-  .intro {
+  .intro, p{
     text-align: center;
   }
 
@@ -24,7 +24,7 @@
   .download-btns {
     display: flex;
     justify-content: center;
-    margin-top: 1rem;
+    margin: 1rem 0;
     gap: 0.5rem;
   }
 

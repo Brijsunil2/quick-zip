@@ -70,13 +70,26 @@ const FileUploader = () => {
         browser — no installation needed.
       </p>
       <div className="function-btns">
-        <button onClick={handleZip} disabled={files.length <= 0}>
+        <button
+          onClick={handleZip}
+          disabled={files.length <= 0 || (progress > 0 && progress < 100)}
+        >
           <MdOutlineFolderZip /> Zip Files
         </button>
       </div>
-      {progress > 0 ? (
-        <ProgressBar progress={progress} />
-      ) : (
+      {progress > 0 && progress < 100 && <ProgressBar progress={progress} />}
+      {progress === 100 && (
+        <p>Zip completed! Click the download button to get your zipped file.</p>
+      )}
+      {zippedBlob && (
+        <div className="download-btns">
+          <button onClick={handleDownload}>
+            <FaDownload /> Zip Download
+          </button>
+        </div>
+      )}
+
+      {(progress === 0 || progress === 100) && (
         <div
           className={`drop-zone ${dragActive ? "active" : ""}`}
           onDragOver={handleDragOver}
@@ -94,13 +107,6 @@ const FileUploader = () => {
             multiple
             onChange={handleUpload}
           />
-        </div>
-      )}
-      {zippedBlob && (
-        <div className="download-btns">
-          <button onClick={handleDownload}>
-            <FaDownload /> Zip Download
-          </button>
         </div>
       )}
 
