@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaUpload } from "react-icons/fa";
 import { MdOutlineFolderZip } from "react-icons/md";
 import { FaDownload } from "react-icons/fa6";
@@ -6,11 +6,22 @@ import FilesList from "./FilesList";
 import "./FileUploader.scss";
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { useZipWorker } from "../util/useZipWorker";
+import { readableFileSize } from "../util/readableFileSize";
 
 const FileUploader = () => {
   const [files, setFiles] = useState([]);
   const [dragActive, setDragActive] = useState(false);
-  const { progress, zippedBlob, zipFiles } = useZipWorker();
+  const {progress, zippedBlob, zipFiles} = useZipWorker();
+  const [totalFileSize, setTotalFileSize] = useState(0);
+
+
+   const getTotalFileSize = () => {
+    return files.reduce((total, file) => total + parseInt(file.size), 0);
+  };
+
+  useEffect(() => {
+    setTotalFileSize(getTotalFileSize());
+  }, [files]);
 
   const handleFiles = (selectedFiles) => {
     setFiles((prev) => [...prev, ...Array.from(selectedFiles)]);
@@ -109,7 +120,11 @@ const FileUploader = () => {
           />
         </div>
       )}
-
+      {files.length > 0 && (
+        <p className="total-file-size">
+          Total File Size: {readableFileSize(totalFileSize)}
+        </p>
+      )}
       <FilesList
         files={files}
         handleRemoveFile={handleRemoveFile}
