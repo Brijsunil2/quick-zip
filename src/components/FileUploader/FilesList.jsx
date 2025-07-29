@@ -1,7 +1,13 @@
 import { FaSquareXmark } from "react-icons/fa6";
-import { useReadableFileSize } from "../util/useReadableFileSize";
+import { readableFileSize } from "../util/readableFileSize";
+import { useMemo } from "react";
 
 const FilesList = ({ files, handleRemoveFile, handleRemoveAllFiles }) => {
+  const readableSizes = useMemo(
+    () => files.map((file) => readableFileSize(parseInt(file.size))),
+    [files]
+  );
+
   return (
     <div className="files-list-container">
       {files.length > 0 && (
@@ -19,12 +25,9 @@ const FilesList = ({ files, handleRemoveFile, handleRemoveAllFiles }) => {
               <li className="file-list-item" key={idx}>
                 <div className="file-info">
                   <span className="file-name">{file.name}</span>
-                  <span className="file-size">
-                    {useReadableFileSize(parseInt(file.size))}
-                  </span>
+                  <span className="file-size">{readableSizes[idx]}</span>
                 </div>
                 <FaSquareXmark
-                  key={idx}
                   className="remove-btn"
                   onClick={() => handleRemoveFile(file)}
                 />
