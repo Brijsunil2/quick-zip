@@ -90,31 +90,32 @@ const FileUploader = () => {
       )}
 
       {(progress === 0 || progress === 100) && (
-        <div
-          className={`drop-zone ${dragActive ? "active" : ""}`}
-          onDragOver={handleDragOver}
-          onDragLeave={handleDragLeave}
-          onDrop={handleDrop}
-        >
-          <p>Drag & Drop files here or click to browse</p>
-          <label htmlFor="file-upload" className="custom-file-input-btn">
-            <FaUpload /> Upload Files
-          </label>
-          <input
-            id="file-upload"
-            className="file-input"
-            type="file"
-            multiple
-            onChange={handleUpload}
+        <>
+          <div
+            className={`drop-zone ${dragActive ? "active" : ""}`}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+          >
+            <p>Drag & Drop files here or click to browse</p>
+            <label htmlFor="file-upload" className="custom-file-input-btn">
+              <FaUpload /> Upload Files
+            </label>
+            <input
+              id="file-upload"
+              className="file-input"
+              type="file"
+              multiple
+              onChange={handleUpload}
+            />
+          </div>
+          <FilesList
+            files={files}
+            handleRemoveFile={handleRemoveFile}
+            handleRemoveAllFiles={handleRemoveAllFiles}
           />
-        </div>
+        </>
       )}
-
-      <FilesList
-        files={files}
-        handleRemoveFile={handleRemoveFile}
-        handleRemoveAllFiles={handleRemoveAllFiles}
-      />
     </div>
   );
 };
