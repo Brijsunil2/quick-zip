@@ -1,7 +1,19 @@
+import "./FileDropZone.scss";
 import { FaUpload } from "react-icons/fa";
 
+import { useEffect, useState } from "react";
+
 const FileDropZone = ({ dragActive, setDragActive, handleFiles, handleUpload }) => {
+  const [isChrome, setIsChrome] = useState(true);
+
+  useEffect(() => {
+    const ua = navigator.userAgent.toLowerCase();
+    const isChromeBrowser = /chrome/.test(ua) && !/edg|opr|brave/.test(ua);
+    setIsChrome(isChromeBrowser);
+  }, []);
+
   const handleDrop = (e) => {
+    if (!isChrome) return;
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
@@ -11,12 +23,14 @@ const FileDropZone = ({ dragActive, setDragActive, handleFiles, handleUpload }) 
   };
 
   const handleDragOver = (e) => {
+    if (!isChrome) return;
     e.preventDefault();
     e.stopPropagation();
     setDragActive(true);
   };
 
   const handleDragLeave = (e) => {
+    if (!isChrome) return;
     e.preventDefault();
     e.stopPropagation();
     setDragActive(false);
@@ -24,12 +38,16 @@ const FileDropZone = ({ dragActive, setDragActive, handleFiles, handleUpload }) 
 
   return (
     <div
-      className={`drop-zone ${dragActive ? "active" : ""}`}
+      className={`drop-zone ${dragActive ? "active" : ""} ${!isChrome ? "disabled" : ""}`}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
     >
-      <p>Drag & Drop files here or click to browse</p>
+      <p>
+        {isChrome
+          ? "Drag & Drop files here or click to browse"
+          : "Drag & Drop is only supported in Chrome. Use file upload instead."}
+      </p>
       <label htmlFor="file-upload" className="custom-file-input-btn">
         <FaUpload /> Upload Files
       </label>

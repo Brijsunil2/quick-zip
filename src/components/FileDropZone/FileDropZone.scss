@@ -1,0 +1,28 @@
+@use "../../styles/colors.scss" as *;
+@use "../../styles/variables.scss" as *;
+@use "sass:map";
+@use "sass:color";
+
+.drop-zone {
+  text-align: center;
+  border: 2px dashed map.get($colors, "border");
+  border-radius: 10px;
+  padding: 2rem;
+  transition: background-color 0.2s;
+  background-color: map.get($colors, "secondary-bg");
+
+  & > p {
+    color: map.get($colors, "text-muted");
+  }
+
+  &.active {
+    background-color: map.get($colors, "dropzone-active");
+    border-color: #007bff;
+    box-shadow: 0 0 10px map.get($colors, "shadow");
+  }
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+}
