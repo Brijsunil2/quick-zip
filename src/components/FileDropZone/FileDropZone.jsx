@@ -1,9 +1,13 @@
 import "./FileDropZone.scss";
 import { FaUpload } from "react-icons/fa";
-
 import { useEffect, useState } from "react";
 
-const FileDropZone = ({ dragActive, setDragActive, handleFiles, handleUpload }) => {
+const FileDropZone = ({
+  dragActive,
+  setDragActive,
+  handleFiles,
+  handleUpload,
+}) => {
   const [isChrome, setIsChrome] = useState(true);
 
   useEffect(() => {
@@ -38,15 +42,19 @@ const FileDropZone = ({ dragActive, setDragActive, handleFiles, handleUpload }) 
 
   return (
     <div
-      className={`drop-zone ${dragActive ? "active" : ""} ${!isChrome ? "disabled" : ""}`}
-      onDragOver={handleDragOver}
-      onDragLeave={handleDragLeave}
-      onDrop={handleDrop}
+      className={`drop-zone ${dragActive ? "active" : ""} ${
+        !isChrome ? "no-drag" : ""
+      }`}
+      {...(isChrome && {
+        onDragOver: handleDragOver,
+        onDragLeave: handleDragLeave,
+        onDrop: handleDrop,
+      })}
     >
       <p>
         {isChrome
           ? "Drag & Drop files here or click to browse"
-          : "Drag & Drop is only supported in Chrome. Use file upload instead."}
+          : "Drag & Drop not supported in this browser. Use the button to upload."}
       </p>
       <label htmlFor="file-upload" className="custom-file-input-btn">
         <FaUpload /> Upload Files

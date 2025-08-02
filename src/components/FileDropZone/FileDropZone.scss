@@ -21,8 +21,8 @@
     box-shadow: 0 0 10px map.get($colors, "shadow");
   }
 
-  &.disabled {
-    pointer-events: none;
-    opacity: 0.5;
+  &.no-drag {
+    border-style: none;
+    background-color: #f9f9f9;
   }
 }
