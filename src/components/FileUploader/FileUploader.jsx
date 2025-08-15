@@ -28,10 +28,19 @@ const FileUploader = () => {
     handleFiles(e.target.files);
   };
 
-  const handleZip = () => {
-    if (files.length > 0) zipFiles(files);
-  };
+ const handleZip = () => {
+  if (files.length === 0) return;
 
+  const totalSize = files.reduce((sum, file) => sum + file.size, 0);
+  const MAX_SAFE_SIZE = 500 * 1024 * 1024;
+
+  if (totalSize > MAX_SAFE_SIZE) {
+    alert("These files are too large to zip in the browser. Please choose smaller files or fewer files.");
+    return;
+  }
+
+  zipFiles(files);
+};
   const handleDownload = () => {
     if (!zippedBlob) return;
     const url = URL.createObjectURL(zippedBlob);
