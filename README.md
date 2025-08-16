@@ -39,16 +39,17 @@ This project was created as part of a personal learning initiative and frontend 
 
 ## Screenshots
 
-> *Include screenshots here if available.*
-
 - **Upload Interface**  
-  Drag and drop files or folders into the drop zone.
+  ![Upload Interface](./src/assets/images/quick_zip_start.png)
 
-- **File List View**  
-  See uploaded files and their paths before downloading.
+- **Files Uploaded**  
+  ![Files Uploaded](./src/assets/images/quick_zip_file_uploaded.png)
+
+- **Zip In Progress**  
+  ![Zip In Progress](./src/assets/images/quick_zip_in_progress.png)
 
 - **Download ZIP**  
-  One click to compress and download the archive.
+  ![Download Zip](./src/assets/images/quick_zip_completed.png)
 
 ---
 
