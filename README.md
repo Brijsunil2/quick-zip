@@ -16,7 +16,7 @@
 
 ## Overview
 
-**QuickZip** is a user-friendly web application that allows users to upload multiple files and folders, and download them as a single ZIP archive. It supports nested folder structures, ensuring that the original directory hierarchy is preserved in the output.
+**QuickZip** is a user-friendly web application that allows users to upload multiple files, and download them as a single ZIP archive.
 
 This project was created as part of a personal learning initiative and frontend experimentation. It allowed me to explore advanced browser APIs, ZIP file handling in JavaScript, and file input UX—all within a modern React development environment. QuickZip reflects my continued effort to build functional, user-centric tools while sharpening my frontend development skills.
 ---
